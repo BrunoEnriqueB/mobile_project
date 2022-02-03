@@ -6,14 +6,14 @@ import { View, Text, Button } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { RootStackParamList } from '../../../components/Container';
 
-import { styles } from './styles';
+import { Container } from './styles';
 
 export function Register({
   route,
   navigation }: NativeStackScreenProps<RootStackParamList, 'Register'>) {
 
   return (
-    <View style={styles.container}>
+    <Container>
       <Text>Tela de Registro</Text>
       <Button
         title="Login"
@@ -21,6 +21,6 @@ export function Register({
           navigation.navigate('Login')
         }}
       />
-    </View>
+    </Container>
   );
 }

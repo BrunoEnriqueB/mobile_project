@@ -22,7 +22,7 @@ export function Login({
       <Logo>Logo</Logo>
       <TextLogin>Fazer Login</TextLogin>
       <LoginButton onPress={() => {
-
+        handleSubmit();
       }}>
         <TextButton>Entrar</TextButton>
       </LoginButton>
