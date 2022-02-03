@@ -1,17 +1,31 @@
-import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 
-import { Btn, TextBtn } from './styles';
+import { Btn, TextRedirectory } from './styles';
 
-export function ButtonSubmit({ title, onPress }: { title: string, onPress: }) {
-  const navigation = useNavigation();
+const titles = {
+  Login: {
+    text: 'Cadastre-se'
+  },
+  Register: {
+    text: 'Fazer login'
+  }
+}
+type ClickHereProps = {
+  title: 'Login' | 'Register';
+  onPress: () => void;
+}
+
+
+export function ClickHere({ title, onPress }: ClickHereProps) {
+  const { text } = titles[title];
+
   return (
     <Btn onPress={() => {
-      onPress
+      onPress();
     }}>
-      <TextBtn>
-        {title}
-      </TextBtn>
+      <TextRedirectory>
+        {text}
+      </TextRedirectory>
     </Btn>
   );
 }

@@ -29,10 +29,3 @@ export const LoginButton = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-export const TextButton = styled.Text`
-  font-size: 62px;
-  font-family: 'Dongle-Regular';
-  padding: 0px 100px;
-  color: #fff;
-
-`;

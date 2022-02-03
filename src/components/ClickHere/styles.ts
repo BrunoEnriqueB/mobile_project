@@ -1,12 +1,14 @@
 import styled from 'styled-components/native';
 
 export const Btn = styled.TouchableOpacity`
-  font-size: ${props => props.theme.fontSizeButton};
-  font-family: ${props => props.theme.fontFamilyButton};
-  padding: ${props => props.theme.paddintButton};
-  color: ${props => props.theme.colorButton};
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;
 
-export const TextBtn = styled.Text`
-
+export const TextRedirectory = styled.Text`
+  font-size: 24px;
+  font-family: 'Dongle-Regular';
+  color: #51CCCA;
+  margin: 0 auto;
 `;
