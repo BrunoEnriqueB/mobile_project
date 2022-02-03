@@ -1,8 +1,9 @@
 import styled from "styled-components/native";
+import { COLORS } from "../../theme";
 
 export const ContainerButton = styled.TouchableOpacity`
   margin: 0 auto;
-  background: #51CCCA;
+  background: ${props => props.theme.colorButton};
   border-radius: 70px;
   align-items: center;
   justify-content: center;

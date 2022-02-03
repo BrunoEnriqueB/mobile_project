@@ -8,8 +8,7 @@ import { RootStackParamList } from '../../../components/Container';
 import { Container, TextLogin, Logo, LoginButton } from './styles';
 
 import { SubmitButton } from '../../../components/SubmitButton';
-
-import { ClickHere } from '../../../components/ClickHere';
+import { AuthLabel } from '../../../components/AuthLabel';
 
 export function Login({
   route,
@@ -24,9 +23,10 @@ export function Login({
     <Container>
       <Logo>Logo</Logo>
       <TextLogin>Fazer Login</TextLogin>
-      <SubmitButton title='Entrar' />
-      <Text>Não tem conta?</Text>
-      <ClickHere title='Login' onPress={() => {
+      <SubmitButton title='Entrar' onPress={() => {
+        console.log('Teste')
+      }} />
+      <AuthLabel title='Login' onPress={() => {
         handleSubmit();
       }} />
     </Container>

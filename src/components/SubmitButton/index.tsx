@@ -2,9 +2,17 @@ import React from 'react';
 
 import { ContainerButton, TextLabel } from './styles';
 
-export function SubmitButton({ title }: { title: string }) {
+type Props = {
+  title: string,
+  onPress: () => void
+}
+
+export function SubmitButton({ title, onPress }: Props) {
   return (
-    <ContainerButton>
+
+    <ContainerButton onPress={() => {
+      onPress();
+    }}>
       <TextLabel>
         {title}
       </TextLabel>

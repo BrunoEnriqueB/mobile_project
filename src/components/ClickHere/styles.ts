@@ -1,14 +1,13 @@
 import styled from 'styled-components/native';
+import { Fonts } from '../../theme';
 
 export const Btn = styled.TouchableOpacity`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  margin-left: 2px;
 `;
 
 export const TextRedirectory = styled.Text`
   font-size: 24px;
-  font-family: 'Dongle-Regular';
+  font-family: ${Fonts.dongleB};
   color: #51CCCA;
-  margin: 0 auto;
+
 `;
