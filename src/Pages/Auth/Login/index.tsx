@@ -1,24 +1,34 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { RootStackParamList } from '../../../components/Container';
 
-import { styles } from './styles';
+import { Container, TextLogin, Logo, LoginButton, TextButton } from './styles';
+
+import { ButtonSubmit } from '../../../components/ClickHere';
 
 export function Login({
   route,
   navigation
 }: NativeStackScreenProps<RootStackParamList, 'Login'>) {
+  function handleSubmit() {
+    navigation.navigate('Register');
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Tela de login</Text>
-      <Button
-        title='Registrar'
-        onPress={() => {
-          navigation.navigate('Register')
-        }}
-      />
-    </View>
+    <Container>
+      <Logo>Logo</Logo>
+      <TextLogin>Fazer Login</TextLogin>
+      <LoginButton onPress={() => {
+
+      }}>
+        <TextButton>Entrar</TextButton>
+      </LoginButton>
+      <ButtonSubmit title='Clique aqui' onPress={() => {
+        handleSubmit()
+      }} />
+    </Container>
   );
 }
