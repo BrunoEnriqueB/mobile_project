@@ -17,12 +17,12 @@ export const InputText = styled.TextInput`
   font-family: ${Fonts.robotoR};
   font-size: 18px;
   margin-left: 10px;
-  color: #000000a0;
+  color: ${COLORS.black};
+  opacity: .6;
 `;
 
 export const SeePassword = styled.TouchableOpacity`
   position: absolute;
   right: 10px;
-  index
 `;
 

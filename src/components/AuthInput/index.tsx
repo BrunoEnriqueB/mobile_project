@@ -7,18 +7,25 @@ import { InputContainer, InputText, SeePassword } from './styles';
 type AuthInputProps = {
   text: string,
   icon: string,
-  additional?: string,
   maxLenght: number,
   securityTextEntry?: boolean,
   textContentType?: 'name' | 'emailAddress' | 'password'
   autoCompleteType?: 'name' | 'password' | 'email' | 'tel'
 }
 
-export function AuthInput({ text, icon, additional, maxLenght, securityTextEntry = false, textContentType, autoCompleteType }: AuthInputProps) {
+export function AuthInput({ text, icon, maxLenght, securityTextEntry = false, textContentType, autoCompleteType }: AuthInputProps) {
   const [isPassword, setIsPassword] = useState(securityTextEntry);
+  const [passwordIcon, setPasswordIcon] = useState(icon)
 
   function handlePassword() {
-    isPassword ? setIsPassword(false) : setIsPassword(true);
+    if (isPassword) {
+      setIsPassword(false);
+      setPasswordIcon('eye-off-outline');
+    } else {
+      setIsPassword(true);
+      setPasswordIcon('eye-outline');
+    }
+
   }
 
   return (
@@ -26,13 +33,13 @@ export function AuthInput({ text, icon, additional, maxLenght, securityTextEntry
       <Icon
         name={icon}
         size={24}
-        color={'#00000032'}
+        color={'rgba(0, 0, 0, 0.3)'}
 
       />
       <InputText
         maxLength={maxLenght}
         placeholder={text}
-        placeholderTextColor={'#00000032'}
+        placeholderTextColor={'rgba(0, 0, 0, 0.3)'}
         secureTextEntry={isPassword}
         textContentType={textContentType}
         autoCompleteType={autoCompleteType}
@@ -40,13 +47,13 @@ export function AuthInput({ text, icon, additional, maxLenght, securityTextEntry
       </InputText>
       {icon === 'lock-closed-outline' && (
         <SeePassword
-          activeOpacity={0.6}
+          activeOpacity={0.75}
           onPress={() => {
             handlePassword();
           }}
         >
           <Icon
-            name={'eye-outline'}
+            name={passwordIcon}
             size={24}
             color={'#00000032'}
           />
