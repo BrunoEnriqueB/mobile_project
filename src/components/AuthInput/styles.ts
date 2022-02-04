@@ -4,11 +4,10 @@ import { COLORS, Fonts } from "../../theme";
 export const InputContainer = styled.View`
   flex-direction: row;
   width: 83%;
-  margin: 0 auto;
+  margin: 0 auto 10px;
   align-items: center;
   border-bottom-color:${COLORS.grey_light};
   border-bottom-width: 1px;
-
 `;
 
 export const InputText = styled.TextInput`

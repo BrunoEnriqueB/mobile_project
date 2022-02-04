@@ -23,11 +23,13 @@ export const TextLogin = styled.Text`
   margin: 150px auto 0px;
 `;
 export const ForgotPassword = styled.TouchableOpacity`
-
+  align-items: flex-end;
 `;
 export const ForgotPasswordText = styled.Text`
   color: ${COLORS.black};
   opacity: .68;
+  margin-right: 50px;
+  margin-top: 10px;
 `;
 export const LoginButton = styled.TouchableOpacity`
   margin: 0 auto;

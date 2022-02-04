@@ -3,7 +3,7 @@ import styled from "styled-components/native";
 import { COLORS, Fonts } from "../../theme";
 
 export const ContainerButton = styled.TouchableOpacity`
-  margin: 10px auto 0px;
+  margin: 40px auto 0px;
   background: ${COLORS.blue_dark};
 `;
 

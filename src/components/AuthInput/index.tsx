@@ -7,15 +7,15 @@ import { InputContainer, InputText, SeePassword } from './styles';
 type AuthInputProps = {
   text: string,
   icon: string,
-  maxLenght: number,
+  maxLenght?: number,
   securityTextEntry?: boolean,
-  textContentType?: 'name' | 'emailAddress' | 'password'
+  textContentType?: 'name' | 'emailAddress' | 'password' | 'telephoneNumber'
   autoCompleteType?: 'name' | 'password' | 'email' | 'tel'
 }
 
-export function AuthInput({ text, icon, maxLenght, securityTextEntry = false, textContentType, autoCompleteType }: AuthInputProps) {
+export function AuthInput({ text, icon, maxLenght = 40, securityTextEntry = false, textContentType, autoCompleteType }: AuthInputProps) {
   const [isPassword, setIsPassword] = useState(securityTextEntry);
-  const [passwordIcon, setPasswordIcon] = useState(icon)
+  const [passwordIcon, setPasswordIcon] = useState('eye-outline')
 
   function handlePassword() {
     if (isPassword) {

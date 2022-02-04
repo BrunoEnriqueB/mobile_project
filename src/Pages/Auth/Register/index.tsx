@@ -7,9 +7,10 @@ import React from 'react';
 import { RootStackParamList } from '../../../components/Container';
 
 import { Container } from './styles';
-import { Logo, TextLogin } from '../Login/styles';
+import { TextLogin } from './styles';
 import { SubmitButton } from '../../../components/SubmitButton';
 import { AuthLabel } from '../../../components/AuthLabel';
+import { AuthInput } from '../../../components/AuthInput';
 
 export function Register({
   route,
@@ -21,8 +22,39 @@ export function Register({
 
   return (
     <Container>
-      <Logo>Logo</Logo>
       <TextLogin>Criar conta</TextLogin>
+      <AuthInput
+        icon='person-outline'
+        text='Nome'
+        autoCompleteType='name'
+        textContentType='name'
+      />
+      <AuthInput
+        icon='mail-outline'
+        text='Email'
+        autoCompleteType='email'
+        textContentType='emailAddress'
+      />
+      <AuthInput
+        icon='call-outline'
+        text='Celular'
+        autoCompleteType='tel'
+        textContentType='telephoneNumber'
+      />
+      <AuthInput
+        icon='lock-closed-outline'
+        text='Senha'
+        autoCompleteType='password'
+        textContentType='password'
+        securityTextEntry={true}
+      />
+      <AuthInput
+        icon='lock-closed-outline'
+        text='Confirmar senha'
+        autoCompleteType='password'
+        textContentType='password'
+        securityTextEntry={true}
+      />
       <SubmitButton
         title='Criar'
         onPress={() => {

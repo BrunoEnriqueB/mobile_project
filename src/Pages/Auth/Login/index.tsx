@@ -23,7 +23,7 @@ export function Login({
       <TextLogin>Fazer Login</TextLogin>
       <AuthInput icon='mail-outline' text='Email' maxLenght={254} textContentType={'name'} autoCompleteType={'name'} />
       <AuthInput icon='lock-closed-outline' text='Senha' maxLenght={40} securityTextEntry={true} textContentType={'password'} autoCompleteType={'password'} />
-      <ForgotPassword>
+      <ForgotPassword activeOpacity={0.7}>
         <ForgotPasswordText>Esqueceu a senha?</ForgotPasswordText>
       </ForgotPassword>
       <SubmitButton
