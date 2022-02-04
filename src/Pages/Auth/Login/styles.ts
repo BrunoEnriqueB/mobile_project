@@ -1,8 +1,9 @@
 import styled from 'styled-components/native';
+import { COLORS } from '../../../theme';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${props => props.theme.bg};
+  background-color: ${COLORS.white_light};
   flex-direction: column;
 `;
 
@@ -16,9 +17,17 @@ export const Logo = styled.Text`
 export const TextLogin = styled.Text`
   font-style: normal;
   font-family: 'Roboto-Black';
-  color: #000;
+  color: ${COLORS.black};
+  opacity: .7;
   font-size: 24px;
   margin: 150px auto 0px;
+`;
+export const ForgotPassword = styled.TouchableOpacity`
+
+`;
+export const ForgotPasswordText = styled.Text`
+  color: ${COLORS.black};
+  opacity: .68;
 `;
 export const LoginButton = styled.TouchableOpacity`
   margin: 0 auto;

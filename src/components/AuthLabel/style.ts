@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { Fonts } from '../../theme';
+import { Fonts, COLORS } from '../../theme';
 
 export const AuthLabelContainer = styled.View`
   flex: 1;
@@ -11,7 +11,7 @@ export const AuthLabelContainer = styled.View`
 export const LabelText = styled.Text`
   font-size: 24px;
   font-family: ${Fonts.dongleR};
-  color: #000;
-  opacity: .4;
+  color: ${COLORS.black};
+  opacity: .7;
   margin-right: 2px;
 `;

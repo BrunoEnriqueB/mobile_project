@@ -3,7 +3,7 @@ import React from 'react';
 
 import { RootStackParamList } from '../../../components/Container';
 
-import { Container, TextLogin, Logo } from './styles';
+import { Container, TextLogin, Logo, ForgotPassword, ForgotPasswordText } from './styles';
 
 import { SubmitButton } from '../../../components/SubmitButton';
 import { AuthLabel } from '../../../components/AuthLabel';
@@ -23,6 +23,9 @@ export function Login({
       <TextLogin>Fazer Login</TextLogin>
       <AuthInput icon='mail-outline' text='Email' maxLenght={254} textContentType={'name'} autoCompleteType={'name'} />
       <AuthInput icon='lock-closed-outline' text='Senha' maxLenght={40} securityTextEntry={true} textContentType={'password'} autoCompleteType={'password'} />
+      <ForgotPassword>
+        <ForgotPasswordText>Esqueceu a senha?</ForgotPasswordText>
+      </ForgotPassword>
       <SubmitButton
         title='Entrar'
         onPress={() => {

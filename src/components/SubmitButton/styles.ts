@@ -9,7 +9,7 @@ export const ContainerButton = styled.TouchableOpacity`
 
 export const TextLabel = styled.Text`
   font-family: ${Fonts.dongleR};
-  color: #fff;
+  color: ${COLORS.white_light};
   align-items: center;
   justify-content: center;
   margin-top: auto;
