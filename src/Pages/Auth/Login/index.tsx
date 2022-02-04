@@ -1,17 +1,14 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 
-import { View, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native';
 import { RootStackParamList } from '../../../components/Container';
 
-import { Container, TextLogin, Logo, LoginButton } from './styles';
+import { Container, TextLogin, Logo } from './styles';
 
 import { SubmitButton } from '../../../components/SubmitButton';
 import { AuthLabel } from '../../../components/AuthLabel';
 
 export function Login({
-  route,
   navigation
 }: NativeStackScreenProps<RootStackParamList, 'Login'>) {
 
@@ -23,9 +20,15 @@ export function Login({
     <Container>
       <Logo>Logo</Logo>
       <TextLogin>Fazer Login</TextLogin>
-      <SubmitButton title='Entrar' onPress={() => {
-        console.log('Teste')
-      }} />
+      <SubmitButton
+        title='Entrar'
+        onPress={() => {
+          console.log('Teste')
+        }}
+        borderRadius={70}
+        paddingHorizontal={85}
+        fontSize={54}
+      />
       <AuthLabel title='Login' onPress={() => {
         handleSubmit();
       }} />

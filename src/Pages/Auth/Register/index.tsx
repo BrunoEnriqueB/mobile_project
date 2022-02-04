@@ -2,25 +2,39 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 
-import { View, Text, Button } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+
+
 import { RootStackParamList } from '../../../components/Container';
 
 import { Container } from './styles';
+import { Logo, TextLogin } from '../Login/styles';
+import { SubmitButton } from '../../../components/SubmitButton';
+import { AuthLabel } from '../../../components/AuthLabel';
 
 export function Register({
   route,
   navigation }: NativeStackScreenProps<RootStackParamList, 'Register'>) {
 
+  function handleSubmit() {
+    navigation.navigate('Login');
+  }
+
   return (
     <Container>
-      <Text>Tela de Registro</Text>
-      <Button
-        title="Login"
+      <Logo>Logo</Logo>
+      <TextLogin>Criar conta</TextLogin>
+      <SubmitButton
+        title='Criar'
         onPress={() => {
-          navigation.navigate('Login')
+          console.log('Teste')
         }}
+        borderRadius={70}
+        paddingHorizontal={85}
+        fontSize={54}
       />
+      <AuthLabel title='Register' onPress={() => {
+        handleSubmit();
+      }} />
     </Container>
   );
 }
