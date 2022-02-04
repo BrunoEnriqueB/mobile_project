@@ -6,5 +6,6 @@ export const Fonts = {
   dongleR: 'Dongle-Regular',
   robotoB: 'Roboto-Black',
   robotoI: 'Roboto-Italic',
-  robotoL: 'Roboto-Light'
+  robotoL: 'Roboto-Light',
+  robotoR: 'Roboto-Regular'
 }
