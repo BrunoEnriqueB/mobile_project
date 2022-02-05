@@ -20,10 +20,11 @@ export function ClickHere({ title, onPress }: ClickHereProps) {
   const { text } = titles[title];
 
   return (
-    <Btn onPress={() => {
+    <Btn activeOpacity={0.7} onPress={() => {
       onPress();
     }}>
-      <TextRedirectory>
+      <TextRedirectory
+      >
         {text}
       </TextRedirectory>
     </Btn>

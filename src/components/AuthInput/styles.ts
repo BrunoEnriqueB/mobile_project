@@ -12,7 +12,7 @@ export const InputContainer = styled.View`
 
 export const InputText = styled.TextInput`
   display: flex;
-  width: 80%
+  width: 80%;
   font-family: ${Fonts.robotoR};
   font-size: 18px;
   margin-left: 10px;

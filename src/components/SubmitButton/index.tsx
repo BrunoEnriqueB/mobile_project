@@ -21,6 +21,7 @@ export function SubmitButton({ title, onPress, borderRadius, fontSize, paddingHo
       onPress={() => {
         onPress();
       }}
+      activeOpacity={0.9}
     >
       <TextLabel style={{
         marginHorizontal: paddingHorizontal,

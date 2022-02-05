@@ -10,6 +10,7 @@ type AuthLabelProps = {
 
 export function AuthLabel({ title, onPress }: AuthLabelProps) {
   return (
+
     <AuthLabelContainer>
       {title === 'Login'
         ? (<LabelText>Não tem cadastro?</LabelText>)
@@ -17,6 +18,8 @@ export function AuthLabel({ title, onPress }: AuthLabelProps) {
       }
       <ClickHere title={title} onPress={onPress} />
     </AuthLabelContainer>
+
+
 
   )
 }

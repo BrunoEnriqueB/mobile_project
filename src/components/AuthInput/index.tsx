@@ -1,21 +1,25 @@
 import React, { useState } from 'react';
-import { TextInputComponent } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import MaskInput, { Masks } from 'react-native-mask-input';
+
 import { InputContainer, InputText, SeePassword } from './styles';
+import { COLORS, Fonts } from '../../theme';
 
 type AuthInputProps = {
-  text: string,
-  icon: string,
-  maxLenght?: number,
-  securityTextEntry?: boolean,
-  textContentType?: 'name' | 'emailAddress' | 'password' | 'telephoneNumber'
-  autoCompleteType?: 'name' | 'password' | 'email' | 'tel'
+  text: string;
+  icon: string;
+  maxLenght?: number;
+  securityTextEntry?: boolean;
+  textContentType?: 'name' | 'emailAddress' | 'password' | 'telephoneNumber';
+  autoCompleteType?: 'name' | 'password' | 'email' | 'tel';
+  value: string,
+  onChangeText: React.Dispatch<React.SetStateAction<string>>
 }
 
-export function AuthInput({ text, icon, maxLenght = 40, securityTextEntry = false, textContentType, autoCompleteType }: AuthInputProps) {
+export function AuthInput({ text, icon, maxLenght = 40, securityTextEntry = false, textContentType, autoCompleteType, value, onChangeText }: AuthInputProps) {
   const [isPassword, setIsPassword] = useState(securityTextEntry);
-  const [passwordIcon, setPasswordIcon] = useState('eye-outline')
+  const [passwordIcon, setPasswordIcon] = useState('eye-outline');
 
   function handlePassword() {
     if (isPassword) {
@@ -36,15 +40,39 @@ export function AuthInput({ text, icon, maxLenght = 40, securityTextEntry = fals
         color={'rgba(0, 0, 0, 0.3)'}
 
       />
-      <InputText
-        maxLength={maxLenght}
-        placeholder={text}
-        placeholderTextColor={'rgba(0, 0, 0, 0.3)'}
-        secureTextEntry={isPassword}
-        textContentType={textContentType}
-        autoCompleteType={autoCompleteType}
-      >
-      </InputText>
+      {text === 'Celular'
+        ? (<MaskInput
+          maxLength={maxLenght}
+          placeholder={text}
+          placeholderTextColor={'rgba(0, 0, 0, 0.3)'}
+          secureTextEntry={isPassword}
+          textContentType={textContentType}
+          onChangeText={onChangeText}
+          value={value}
+          mask={Masks.BRL_PHONE}
+          style={{
+            width: 200,
+            fontFamily: `${Fonts.robotoR}`,
+            fontSize: 16,
+            marginLeft: 10,
+            color: `${COLORS.black}`,
+            opacity: .6,
+          }}
+
+        />)
+        : (<InputText
+          maxLength={maxLenght}
+          placeholder={text}
+          placeholderTextColor={'rgba(0, 0, 0, 0.3)'}
+          secureTextEntry={isPassword}
+          textContentType={textContentType}
+          autoCompleteType={autoCompleteType}
+          onChangeText={onChangeText}
+          value={value}
+        >
+        </InputText>)
+      }
+
       {icon === 'lock-closed-outline' && (
         <SeePassword
           activeOpacity={0.75}
