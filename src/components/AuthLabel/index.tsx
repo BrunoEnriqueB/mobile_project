@@ -1,12 +1,9 @@
 import React from 'react';
+import { AuthLabelProps } from '../../domain/propsInterfaces';
+
 import { ClickHere } from '../ClickHere';
 
 import { AuthLabelContainer, LabelText } from './style'
-
-type AuthLabelProps = {
-  title: 'Login' | 'Register';
-  onPress: () => void;
-}
 
 export function AuthLabel({ title, onPress }: AuthLabelProps) {
   return (

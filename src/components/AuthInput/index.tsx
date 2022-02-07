@@ -5,17 +5,7 @@ import MaskInput, { Masks } from 'react-native-mask-input';
 
 import { InputContainer, InputText, SeePassword } from './styles';
 import { COLORS, Fonts } from '../../theme';
-
-type AuthInputProps = {
-  text: string;
-  icon: string;
-  maxLenght?: number;
-  securityTextEntry?: boolean;
-  textContentType?: 'name' | 'emailAddress' | 'password' | 'telephoneNumber';
-  autoCompleteType?: 'name' | 'password' | 'email' | 'tel';
-  value: string,
-  onChangeText: React.Dispatch<React.SetStateAction<string>>
-}
+import { AuthInputProps } from '../../domain/propsInterfaces';
 
 export function AuthInput({ text, icon, maxLenght = 40, securityTextEntry = false, textContentType, autoCompleteType, value, onChangeText }: AuthInputProps) {
   const [isPassword, setIsPassword] = useState(securityTextEntry);

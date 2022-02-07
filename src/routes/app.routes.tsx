@@ -3,11 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { Login } from '../pages/Auth/Login';
 import { Register } from '../pages/Auth/Register';
-
-export type AuthParams = {
-  Login: undefined,
-  Register: undefined
-}
+import { AuthParams } from '../domain/authTypes';
 
 const Auth = createNativeStackNavigator<AuthParams>();
 export function AuthRoutes() {

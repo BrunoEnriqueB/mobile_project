@@ -6,8 +6,8 @@ import { Container, TextLogin, Logo, ForgotPassword, ForgotPasswordText } from '
 import { SubmitButton } from '../../../components/SubmitButton';
 import { AuthLabel } from '../../../components/AuthLabel';
 import { AuthInput } from '../../../components/AuthInput';
-import { AuthParams } from '../../../routes/app.routes';
 import { useAuth } from '../../../hooks/useAuth';
+import { AuthParams } from '../../../domain/authTypes';
 
 type Props = NativeStackScreenProps<AuthParams, 'Register'>
 

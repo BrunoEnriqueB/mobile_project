@@ -6,11 +6,10 @@ import { Container, TextLogin, InputContainer } from './styles';
 import { SubmitButton } from '../../../components/SubmitButton';
 import { AuthLabel } from '../../../components/AuthLabel';
 import { AuthInput } from '../../../components/AuthInput';
-import { AuthParams } from '../../../routes/app.routes';
 import { Text } from 'react-native';
 import { Fonts } from '../../../theme';
-import { RegisterData, useAuth } from '../../../hooks/useAuth';
-
+import { useAuth } from '../../../hooks/useAuth';
+import { AuthParams, RegisterData } from '../../../domain/authTypes';
 
 type Props = NativeStackScreenProps<AuthParams, 'Login'>
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { ClickHereProps } from '../../domain/propsInterfaces';
 
 import { Btn, TextRedirectory } from './styles';
 
@@ -10,11 +11,6 @@ const titles = {
     text: 'Fazer login'
   }
 }
-type ClickHereProps = {
-  title: 'Login' | 'Register';
-  onPress: () => void;
-}
-
 
 export function ClickHere({ title, onPress }: ClickHereProps) {
   const { text } = titles[title];

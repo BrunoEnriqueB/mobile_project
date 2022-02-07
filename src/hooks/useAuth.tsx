@@ -1,34 +1,10 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useState } from 'react';
 import { useEffect } from 'react';
+import { AuthData, LoginData, RegisterData } from '../domain/authTypes';
+import { AuthProviderProps } from '../domain/propsInterfaces';
 
-import { Login } from '../pages/Auth/Login';
-import { Register } from '../pages/Auth/Register';
-
-import { login, register, ResponseObject } from '../services/authService';
-
-export interface AuthData {
-  token?: string | object;
-  authorized: boolean;
-  signIn: (data: LoginData) => void
-  signUp: (data: RegisterData) => void
-}
-
-export interface LoginData {
-  email: string,
-  password: string,
-}
-
-export interface RegisterData extends LoginData {
-  name: string,
-  phone: string,
-  password: string,
-  confirmpassword: string
-}
-
-type AuthProviderProps = {
-  children: React.ReactNode;
-}
+import { login, register } from '../services/authService';
 
 export const AuthContext = createContext({} as AuthData);
 
@@ -37,28 +13,39 @@ function AuthProvider({ children }: AuthProviderProps) {
   const [token, setToken] = useState('');
   const [authorized, setAuthorized] = useState(false);
 
+
   async function signIn(data: LoginData) {
-    const auth: string | undefined | void = await login(data);
+    const auth = await login(data);
     if (auth) {
-      setToken(auth);
-      await authUser();
+      await authUser(auth);
     }
   }
 
   async function signUp(data: RegisterData) {
-    const auth: string | undefined | void = await register(data);
+    const auth = await register(data);
     if (auth) {
-      setToken(auth);
-      await authUser();
+      await authUser(auth);
     }
   }
 
-  async function authUser() {
+  async function authUser(userToken: string) {
+    setToken(userToken);
     setAuthorized(true);
 
     await AsyncStorage.setItem('@token', JSON.stringify(token));
   }
 
+  async function checkToken(): Promise<void> {
+    const storageToken = await AsyncStorage.getItem('@token');
+    if (storageToken) {
+      await authUser(JSON.stringify(token));
+    }
+    // await AsyncStorage.removeItem('@token');
+  }
+
+  useEffect(() => {
+    checkToken().then(() => { }).catch(() => { });
+  }, [])
 
   return (
     <AuthContext.Provider value={{ token, signIn, signUp, authorized }}>

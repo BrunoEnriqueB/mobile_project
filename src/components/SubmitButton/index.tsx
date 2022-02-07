@@ -1,14 +1,8 @@
 import React from 'react';
+import { Props } from '../../domain/propsInterfaces';
 
 import { ContainerButton, TextLabel } from './styles';
 
-type Props = {
-  title: string;
-  onPress: () => void;
-  borderRadius: number;
-  fontSize: number;
-  paddingHorizontal: number;
-}
 
 export function SubmitButton({ title, onPress, borderRadius, fontSize, paddingHorizontal }: Props) {
   return (
