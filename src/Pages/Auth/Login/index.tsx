@@ -9,7 +9,7 @@ import { AuthInput } from '../../../components/AuthInput';
 import { useAuth } from '../../../hooks/useAuth';
 import { AuthParams } from '../../../domain/authTypes';
 
-type Props = NativeStackScreenProps<AuthParams, 'Register'>
+type Props = NativeStackScreenProps<AuthParams, 'Login'>
 
 export function Login({
   navigation
@@ -50,7 +50,7 @@ export function Login({
         value={password}
         onChangeText={setPassword}
       />
-      <ForgotPassword activeOpacity={0.7} onPress={() => console.log(password)}>
+      <ForgotPassword activeOpacity={0.7} onPress={() => navigation.navigate('SendEmail')}>
         <ForgotPasswordText>Esqueceu a senha?</ForgotPasswordText>
       </ForgotPassword>
       <SubmitButton

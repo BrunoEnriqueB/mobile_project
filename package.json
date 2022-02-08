@@ -22,6 +22,8 @@
     "react-native-mask-input": "^1.1.1",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.10.2",
+    "react-native-svg": "^12.1.1",
+    "react-native-svg-transformer": "^1.0.0",
     "react-native-vector-icons": "^9.0.0",
     "react-navigation": "^4.4.4",
     "styled-components": "^5.3.3"

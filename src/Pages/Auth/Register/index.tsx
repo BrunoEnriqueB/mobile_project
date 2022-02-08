@@ -11,7 +11,7 @@ import { Fonts } from '../../../theme';
 import { useAuth } from '../../../hooks/useAuth';
 import { AuthParams, RegisterData } from '../../../domain/authTypes';
 
-type Props = NativeStackScreenProps<AuthParams, 'Login'>
+type Props = NativeStackScreenProps<AuthParams, 'Register'>
 
 export function Register({
   navigation

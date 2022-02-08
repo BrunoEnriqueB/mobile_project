@@ -24,5 +24,8 @@ export interface ResponseObject {
 
 export type AuthParams = {
   Login: undefined,
-  Register: undefined
+  Register: undefined,
+  SendEmail: undefined,
+  RequestCode: undefined,
+  NewPassword: undefined
 }
