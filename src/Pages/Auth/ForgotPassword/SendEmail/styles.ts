@@ -19,7 +19,7 @@ export const SendEmailButton = styled.TouchableOpacity`
   justify-self: flex-end;
   margin-right: 50px;
   margin-bottom: 30px;
-  background-color: ${COLORS.grey_dark}
+  background-color: ${COLORS.blue_dark}
   justify-content: center;
   align-items: center;
   

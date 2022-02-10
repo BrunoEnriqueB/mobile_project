@@ -43,12 +43,19 @@ function AuthProvider({ children }: AuthProviderProps) {
     // await AsyncStorage.removeItem('@token');
   }
 
+
+  async function logout() {
+    await AsyncStorage.removeItem('@token');
+    setAuthorized(false);
+    return;
+  }
+
   useEffect(() => {
     checkToken().then(() => { }).catch(() => { });
   }, [])
 
   return (
-    <AuthContext.Provider value={{ token, signIn, signUp, authorized }}>
+    <AuthContext.Provider value={{ token, signIn, signUp, authorized, logout }}>
       {children}
     </ AuthContext.Provider>
   )

@@ -18,7 +18,6 @@ export async function register(data: RegisterData): Promise<string | undefined |
 export async function login(data: LoginData): Promise<string | undefined> {
   try {
     return await api.post('/user/login', data).then((res: AxiosResponse<ResponseObject>) => {
-      console.log(res.data)
       return res.data.token;
     }).catch((err: AxiosError<ResponseObject>) => {
       if (err.response?.data.message) {
@@ -31,3 +30,16 @@ export async function login(data: LoginData): Promise<string | undefined> {
     console.log(error);
   }
 }
+
+// export async function sendMail(email: string): Promise<string | undefined> {
+//   return await api.post('/user/forgotpassword', {
+//     email: email
+//   }).then(() => {
+//     return undefined;
+//   }).catch((err: AxiosError<ResponseObject>) => {
+//     if (err.response?.data.message) {
+//       Alert.alert(err.response.data.message)
+//     }
+//     return err.response?.data.message
+//   })
+// }
