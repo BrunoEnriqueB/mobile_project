@@ -31,15 +31,15 @@ export async function login(data: LoginData): Promise<string | undefined> {
   }
 }
 
-// export async function sendMail(email: string): Promise<string | undefined> {
-//   return await api.post('/user/forgotpassword', {
-//     email: email
-//   }).then(() => {
-//     return undefined;
-//   }).catch((err: AxiosError<ResponseObject>) => {
-//     if (err.response?.data.message) {
-//       Alert.alert(err.response.data.message)
-//     }
-//     return err.response?.data.message
-//   })
-// }
+export async function sendMail(email: string): Promise<string | undefined> {
+  return await api.post('/user/forgotpassword', {
+    email: email
+  }).then(() => {
+    return undefined;
+  }).catch((err: AxiosError<ResponseObject>) => {
+    if (err.response?.data.message) {
+      Alert.alert(err.response.data.message)
+    }
+    return err.response?.data.message
+  })
+}

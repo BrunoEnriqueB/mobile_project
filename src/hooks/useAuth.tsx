@@ -3,8 +3,9 @@ import React, { createContext, useContext, useState } from 'react';
 import { useEffect } from 'react';
 import { AuthData, LoginData, RegisterData } from '../domain/authTypes';
 import { AuthProviderProps } from '../domain/propsInterfaces';
+import { SendEmail } from '../pages/Auth/ForgotPassword/SendEmail';
 
-import { login, register } from '../services/authService';
+import { login, register, sendMail } from '../services/authService';
 
 export const AuthContext = createContext({} as AuthData);
 
@@ -43,6 +44,9 @@ function AuthProvider({ children }: AuthProviderProps) {
     // await AsyncStorage.removeItem('@token');
   }
 
+  async function sendEmail(email: string) {
+    return await sendMail(email);
+  }
 
   async function logout() {
     await AsyncStorage.removeItem('@token');
@@ -55,7 +59,7 @@ function AuthProvider({ children }: AuthProviderProps) {
   }, [])
 
   return (
-    <AuthContext.Provider value={{ token, signIn, signUp, authorized, logout }}>
+    <AuthContext.Provider value={{ token, signIn, signUp, authorized, logout, sendEmail }}>
       {children}
     </ AuthContext.Provider>
   )

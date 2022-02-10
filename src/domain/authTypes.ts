@@ -3,7 +3,7 @@ export interface AuthData {
   authorized: boolean;
   signIn: (data: LoginData) => void
   signUp: (data: RegisterData) => void
-  // sendEmail: (email: string) => Promise<string | undefined>
+  sendEmail: (email: string) => Promise<string | undefined>
   logout: () => void
 }
 

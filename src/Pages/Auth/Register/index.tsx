@@ -6,10 +6,10 @@ import { Container, TextLogin, InputContainer } from './styles';
 import { SubmitButton } from '../../../components/SubmitButton';
 import { AuthLabel } from '../../../components/AuthLabel';
 import { AuthInput } from '../../../components/AuthInput';
-import { Text } from 'react-native';
-import { Fonts } from '../../../theme';
 import { useAuth } from '../../../hooks/useAuth';
 import { AuthParams, RegisterData } from '../../../domain/authTypes';
+import { checkEmailValidated } from '../../../utils/mask';
+import { EmailInvalid } from '../../../components/EmailInvalid';
 
 type Props = NativeStackScreenProps<AuthParams, 'Register'>
 
@@ -37,12 +37,13 @@ export function Register({
   }
 
   function handleSubmit() {
-    const re = /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    if (!re.test(String(email).toLowerCase())) {
+    const checkEmail = checkEmailValidated(email);
+    if (checkEmail) {
       setEmailError(true);
       setTimeout(() => {
         setEmailError(false);
       }, 3000)
+      return;
     }
     const data: RegisterData = { email, name, phone, confirmpassword, password }
     signUp(data);
@@ -69,12 +70,7 @@ export function Register({
           onChangeText={setEmail}
         />
         {emailError && (
-          <Text style={{
-            alignSelf: 'flex-end',
-            marginRight: 50,
-            fontFamily: `${Fonts.robotoR}`,
-            color: '#F00'
-          }}>Email inválido!</Text>
+          <EmailInvalid />
         )}
         <AuthInput
           icon='call-outline'
