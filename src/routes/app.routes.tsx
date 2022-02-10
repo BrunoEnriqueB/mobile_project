@@ -1,31 +1,58 @@
 import React from 'react';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import Ioicons from 'react-native-vector-icons/Ionicons'
+import FontAwesomeIcons from 'react-native-vector-icons/FontAwesome';
 
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { Login } from '../pages/Auth/Login';
-import { Register } from '../pages/Auth/Register';
-import { SendEmail } from '../pages/Auth/ForgotPassword/SendEmail';
+import { Home } from '../pages/App/Home';
+import { COLORS, Fonts } from '../theme';
 
-import { HeaderBackImage } from '../components/HeaderBackImage';
+const App = createBottomTabNavigator();
 
-import { AuthParams } from '../domain/authTypes';
-import { COLORS } from '../theme';
-import { NativeScreen } from 'react-native-screens';
-
-const Auth = createNativeStackNavigator<AuthParams>();
-export function AuthRoutes() {
+export function AppRoutes() {
   return (
-    <Auth.Navigator initialRouteName='Login' >
-      <Auth.Screen name='Login' component={Login} options={{ headerShown: false }} />
-      <Auth.Screen name='Register' component={Register} options={{ headerShown: false }} />
-      <Auth.Screen name='SendEmail' component={SendEmail} options={{
-        title: '',
-        headerStyle: {
-          backgroundColor: `${COLORS.white_light}`
-        },
-        headerShadowVisible: false,
-      }} />
+    <App.Navigator
+      initialRouteName='Home'
+      screenOptions={({ route }) => ({
+        headerShown: false,
+        tabBarLabelStyle: { fontFamily: `${Fonts.dongleB}`, fontSize: 24, position: 'absolute', bottom: 3 },
+        tabBarStyle: { backgroundColor: '#DADFE5', borderRadius: 13, height: 60, justifyContent: 'center', alignItems: 'center' },
+        tabBarIconStyle: { paddingBottom: 20 },
+        tabBarIcon: (({ color, size, focused }) => {
+          if (route.name === 'Home') {
+            return <MaterialCommunityIcons name="storefront-outline" size={27} color={focused ? `${COLORS.blue_dark}` : `${COLORS.grey_dark}`} />
+          } else if (route.name === 'Profile') {
+            return <FontAwesomeIcons name='user-o' size={27} color={focused ? `${COLORS.blue_dark}` : `${COLORS.grey_dark}`} />
+          } else if (route.name === 'ShoppingCart') {
+            return <Ioicons name='ios-cart-outline' size={27} color={focused ? `${COLORS.blue_dark}` : `${COLORS.grey_dark}`} />
+          }
+        }),
+        tabBarActiveTintColor: `${COLORS.blue_dark}`,
 
-    </Auth.Navigator>
+      })}
+    >
+      <App.Screen
+        name='Home'
+        component={Home}
+        options={{
+          tabBarLabel: 'Inicio',
+        }}
+      />
+      <App.Screen
+        name='ShoppingCart'
+        component={Home}
+        options={{
+          tabBarLabel: 'Carrinho'
+        }}
+      />
+      <App.Screen
+        name='Profile'
+        component={Home}
+        options={{
+          tabBarLabel: 'Perfil'
+        }}
+      />
+    </App.Navigator>
   )
 }
