@@ -4,10 +4,11 @@ import { Props } from '../../domain/propsInterfaces';
 import { ContainerButton, TextLabel } from './styles';
 
 
-export function SubmitButton({ title, onPress, borderRadius, fontSize, paddingHorizontal }: Props) {
+export function SubmitButton({ title, onPress, borderRadius, fontSize, paddingHorizontal, disabled = false }: Props) {
   return (
 
     <ContainerButton
+      disabled={disabled}
       style={{
         borderRadius: borderRadius,
         height: fontSize,

@@ -24,9 +24,16 @@ export interface Props {
   borderRadius: number;
   fontSize: number;
   paddingHorizontal: number;
+  disabled?: boolean
 }
 
 export interface ClickHereProps {
   title: 'Login' | 'Register';
   onPress: () => void;
+}
+
+export interface InputProps {
+  title: string,
+  value: string,
+  onChangeText: React.Dispatch<React.SetStateAction<string>>,
 }

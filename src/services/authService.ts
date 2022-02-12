@@ -34,12 +34,29 @@ export async function login(data: LoginData): Promise<string | undefined> {
 export async function sendMail(email: string): Promise<string | undefined> {
   return await api.post('/user/forgotpassword', {
     email: email
-  }).then(() => {
-    return undefined;
+  }).then((res: AxiosResponse<ResponseObject>) => {
+    return res.data.email;
   }).catch((err: AxiosError<ResponseObject>) => {
     if (err.response?.data.message) {
       Alert.alert(err.response.data.message)
     }
-    return err.response?.data.message
+    return undefined;
   })
+
+}
+
+export async function validateCode(email: string, code: string): Promise<string | undefined> {
+  return await api.post('user/resetpassword', {
+    email: email,
+    code: code
+  }).then((res: AxiosResponse<ResponseObject>) => {
+    console.log(res.data);
+    return res.data.token;
+  }).catch((err: AxiosError<ResponseObject>) => {
+    if (err.response?.data.message) {
+      Alert.alert(err.response?.data.message);
+      console.log(err.response)
+    }
+    return undefined;
+  });
 }

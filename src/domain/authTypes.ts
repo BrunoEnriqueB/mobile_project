@@ -1,10 +1,12 @@
 export interface AuthData {
   token?: string | object;
   authorized: boolean;
+  email: string;
   signIn: (data: LoginData) => void
   signUp: (data: RegisterData) => void
-  sendEmail: (email: string) => Promise<string | undefined>
-  logout: () => void
+  sendEmail: (email: string) => Promise<boolean>
+  verifyCode: (email: string, code: string) => Promise<boolean>
+  logout: () => void,
 }
 
 export interface LoginData {
@@ -21,13 +23,13 @@ export interface RegisterData extends LoginData {
 
 export interface ResponseObject {
   message: string,
-  token?: string
+  token?: string,
+  email?: string,
 }
 
 export type AuthParams = {
   Login: undefined,
   Register: undefined,
   SendEmail: undefined,
-  RequestCode: undefined,
-  NewPassword: undefined
+
 }

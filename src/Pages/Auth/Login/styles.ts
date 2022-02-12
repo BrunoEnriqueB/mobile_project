@@ -3,7 +3,7 @@ import { COLORS } from '../../../theme';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${COLORS.blue_light};
+  background-color: ${COLORS.white_dark};
   flex-direction: column;
 `;
 

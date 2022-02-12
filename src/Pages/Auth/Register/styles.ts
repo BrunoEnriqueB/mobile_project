@@ -3,12 +3,20 @@ import { COLORS } from '../../../theme';
 
 export const Container = styled.View`
   flex: 1;
-  background-color: ${COLORS.blue_light};
+  background-color: ${COLORS.white_dark};
   flex-direction: column;
 `;
 
 export const InputContainer = styled.View`
 
+`;
+
+export const InválidEmailText = styled.View`
+  align-self: flex-end;
+  justify-self: flex-start;
+  height: 15px;
+  position: absolute;
+  top: 115px;
 `;
 export const TextLogin = styled.Text`
   font-style: normal;

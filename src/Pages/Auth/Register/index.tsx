@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { Container, TextLogin, InputContainer } from './styles';
+import { Container, TextLogin, InputContainer, InválidEmailText } from './styles';
 import { SubmitButton } from '../../../components/SubmitButton';
 import { AuthLabel } from '../../../components/AuthLabel';
 import { AuthInput } from '../../../components/AuthInput';
@@ -69,9 +69,11 @@ export function Register({
           value={email}
           onChangeText={setEmail}
         />
-        {emailError && (
-          <EmailInvalid />
-        )}
+        <InválidEmailText>
+          {emailError && (
+            <EmailInvalid />
+          )}
+        </InválidEmailText>
         <AuthInput
           icon='call-outline'
           text='Celular'

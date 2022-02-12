@@ -8,6 +8,8 @@ import { AuthLabel } from '../../../components/AuthLabel';
 import { AuthInput } from '../../../components/AuthInput';
 import { useAuth } from '../../../hooks/useAuth';
 import { AuthParams } from '../../../domain/authTypes';
+import { SendEmail } from '../ForgotPassword/SendEmail';
+import { RequestCode } from '../ForgotPassword/RequestCode';
 
 type Props = NativeStackScreenProps<AuthParams, 'Login'>
 
@@ -17,6 +19,8 @@ export function Login({
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { signIn } = useAuth();
+  const [shownSendEmail, setShownSendEmail] = useState(false);
+  const [shownRequestCode, setShownRequestCodeVisible] = useState(false);
 
   function handleNavigate() {
     setEmail('');
@@ -50,8 +54,12 @@ export function Login({
         value={password}
         onChangeText={setPassword}
       />
-      <ForgotPassword activeOpacity={0.7} onPress={() => navigation.navigate('SendEmail')}>
-        <ForgotPasswordText>Esqueceu a senha?</ForgotPasswordText>
+      <ForgotPassword onPress={() => {
+        setShownSendEmail(true);
+      }}>
+        <ForgotPasswordText>
+          Esqueceu a senha?
+        </ForgotPasswordText>
       </ForgotPassword>
       <SubmitButton
         title='Entrar'
@@ -65,6 +73,15 @@ export function Login({
       <AuthLabel title='Login' onPress={() => {
         handleNavigate();
       }} />
+      <SendEmail
+        setRequestCodeVisible={setShownRequestCodeVisible}
+        visible={shownSendEmail}
+        setVisible={setShownSendEmail}
+      />
+      <RequestCode
+        setVisible={setShownRequestCodeVisible}
+        visible={shownRequestCode}
+      />
     </Container>
   );
 }
