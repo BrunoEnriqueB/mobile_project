@@ -1,11 +1,12 @@
 import AsyncStorage, { useAsyncStorage } from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useState } from 'react';
 import { useEffect } from 'react';
+import { api } from '../config/api';
 import { AuthData, LoginData, RegisterData, ResponseObject } from '../domain/authTypes';
 import { AuthProviderProps } from '../domain/propsInterfaces';
 import { SendEmail } from '../pages/Auth/ForgotPassword/SendEmail';
 
-import { login, register, sendMail, validateCode } from '../services/authService';
+import { login, newPassword, register, sendMail, validateCode } from '../services/authService';
 
 export const AuthContext = createContext({} as AuthData);
 
@@ -57,11 +58,20 @@ function AuthProvider({ children }: AuthProviderProps) {
   }
 
   async function verifyCode(email: string, code: string) {
-    const codeValidate = await validateCode(email, code);
+    const codeValidate: string | undefined = await validateCode(email, code);
     if (codeValidate) {
       await AsyncStorage.setItem('@resetPasswordToken', codeValidate);
+      api.defaults.headers.common['authorization'] = `Bearer ${codeValidate}`
+      return true;
     }
     return false;
+  }
+
+  async function sendNewPassword(password: string, confirmpassword: string) {
+    const message = await newPassword(password, confirmpassword);
+    await AsyncStorage.removeItem('@resetPasswordToken');
+    setUserEmail('');
+    return message;
   }
 
   async function logout() {
@@ -72,10 +82,16 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     checkToken().then(() => { }).catch(() => { });
+
+    if (token) {
+      api.defaults.headers.common['authorization'] = token;
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userEmail])
 
   return (
-    <AuthContext.Provider value={{ token, signIn, signUp, authorized, logout, sendEmail, email: userEmail, verifyCode }}>
+    <AuthContext.Provider value={{ token, signIn, signUp, authorized, logout, sendEmail, email: userEmail, verifyCode, sendNewPassword }}>
       {children}
     </ AuthContext.Provider>
   )

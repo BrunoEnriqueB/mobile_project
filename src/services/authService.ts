@@ -50,13 +50,28 @@ export async function validateCode(email: string, code: string): Promise<string 
     email: email,
     code: code
   }).then((res: AxiosResponse<ResponseObject>) => {
-    console.log(res.data);
     return res.data.token;
   }).catch((err: AxiosError<ResponseObject>) => {
     if (err.response?.data.message) {
       Alert.alert(err.response?.data.message);
-      console.log(err.response)
     }
     return undefined;
   });
+}
+
+export async function newPassword(password: string, confirmpassword: string): Promise<string | undefined> {
+  return await api.patch('/user/sendnewpassword', {
+    password,
+    confirmpassword
+  }).then((res: AxiosResponse<ResponseObject>) => {
+    if (res) {
+      Alert.alert(res.data.message);
+    }
+    return res.data.message;
+  }).catch((err: AxiosError<ResponseObject>) => {
+    if (err.response?.data.message) {
+      Alert.alert(err.response?.data.message)
+    }
+    return undefined;
+  })
 }

@@ -14,7 +14,7 @@ export function AuthInput({ text, icon, maxLenght = 40, securityTextEntry = fals
   function handlePassword() {
     if (isPassword) {
       setIsPassword(false);
-      setPasswordIcon('eye-off-outline');
+      setPasswordIcon('password');
     } else {
       setIsPassword(true);
       setPasswordIcon('eye-outline');
@@ -32,7 +32,6 @@ export function AuthInput({ text, icon, maxLenght = 40, securityTextEntry = fals
       />
       {text === 'Celular'
         ? (<MaskInput
-          maxLength={maxLenght}
           placeholder={text}
           placeholderTextColor={'rgba(0, 0, 0, 0.3)'}
           secureTextEntry={isPassword}
@@ -51,7 +50,6 @@ export function AuthInput({ text, icon, maxLenght = 40, securityTextEntry = fals
 
         />)
         : (<InputText
-          maxLength={maxLenght}
           placeholder={text}
           placeholderTextColor={'rgba(0, 0, 0, 0.3)'}
           secureTextEntry={isPassword}

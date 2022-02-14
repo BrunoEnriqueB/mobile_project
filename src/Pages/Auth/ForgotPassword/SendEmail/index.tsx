@@ -10,6 +10,7 @@ import { checkEmailValidated } from '../../../../utils/mask';
 import { EmailInvalid } from '../../../../components/EmailInvalid';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthParams } from '../../../../domain/authTypes';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 type PropsModal = ModalProps & {
@@ -50,7 +51,7 @@ export function SendEmail({ visible, setVisible, setRequestCodeVisible }: PropsM
       animationIn={'fadeIn'}
       isVisible={visible}
       onBackdropPress={() => {
-        setVisible(false)
+        setVisible(false);
       }}
       onModalHide={() => {
         setEmail('');

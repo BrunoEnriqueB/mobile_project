@@ -10,6 +10,7 @@ import { useAuth } from '../../../hooks/useAuth';
 import { AuthParams } from '../../../domain/authTypes';
 import { SendEmail } from '../ForgotPassword/SendEmail';
 import { RequestCode } from '../ForgotPassword/RequestCode';
+import { NewPassword } from '../ForgotPassword/NewPassword';
 
 type Props = NativeStackScreenProps<AuthParams, 'Login'>
 
@@ -21,6 +22,7 @@ export function Login({
   const { signIn } = useAuth();
   const [shownSendEmail, setShownSendEmail] = useState(false);
   const [shownRequestCode, setShownRequestCodeVisible] = useState(false);
+  const [shownNewPassword, setShownNewPassword] = useState(false);
 
   function handleNavigate() {
     setEmail('');
@@ -81,6 +83,13 @@ export function Login({
       <RequestCode
         setVisible={setShownRequestCodeVisible}
         visible={shownRequestCode}
+        setNewPasswordVissible={setShownNewPassword}
+      />
+      <NewPassword
+        visible={shownNewPassword}
+        setVisible={setShownNewPassword}
+        setRequestCode={setShownRequestCodeVisible}
+        setSendEmail={setShownSendEmail}
       />
     </Container>
   );

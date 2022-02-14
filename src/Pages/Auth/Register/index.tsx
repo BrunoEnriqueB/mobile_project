@@ -90,6 +90,7 @@ export function Register({
           securityTextEntry={true}
           value={password}
           onChangeText={setPassword}
+          maxLenght={40}
         />
         <AuthInput
           icon='lock-closed-outline'
@@ -99,6 +100,7 @@ export function Register({
           securityTextEntry={true}
           value={confirmpassword}
           onChangeText={setConfirmPassword}
+          maxLenght={40}
         />
       </InputContainer>
       <SubmitButton

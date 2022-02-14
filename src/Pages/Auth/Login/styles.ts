@@ -30,6 +30,7 @@ export const ForgotPasswordText = styled.Text`
   opacity: .68;
   margin-right: 50px;
   margin-top: 10px;
+  margin-bottom: 60px;
 `;
 export const LoginButton = styled.TouchableOpacity`
   margin: 0 auto;

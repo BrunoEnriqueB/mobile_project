@@ -33,7 +33,9 @@ export interface ClickHereProps {
 }
 
 export interface InputProps {
-  title: string,
-  value: string,
-  onChangeText: React.Dispatch<React.SetStateAction<string>>,
+  title: string;
+  value: string;
+  onChangeText: React.Dispatch<React.SetStateAction<string>>;
+  isPassword?: boolean;
+  hasIcon?: boolean;
 }

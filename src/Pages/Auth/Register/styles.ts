@@ -8,7 +8,7 @@ export const Container = styled.View`
 `;
 
 export const InputContainer = styled.View`
-
+  margin-bottom: 60px;
 `;
 
 export const InválidEmailText = styled.View`
