@@ -1,3 +1,5 @@
+import { ModalProps } from 'react-native';
+
 export interface AuthProviderProps {
   children: React.ReactNode;
 }
@@ -38,4 +40,10 @@ export interface InputProps {
   onChangeText: React.Dispatch<React.SetStateAction<string>>;
   isPassword?: boolean;
   hasIcon?: boolean;
+}
+
+type PropsModal = ModalProps & {
+  setRequestCode: (visible: boolean) => void;
+  setSendEmail: (visible: boolean) => void;
+  setNewPasswordVisible: (visible: boolean) => void;
 }

@@ -8,20 +8,17 @@ import { Content } from '../SendEmail/styles';
 import { Code } from '../../../../components/Code';
 import { useAuth } from '../../../../hooks/useAuth';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { PropsModal } from '../../../../domain/propsInterfaces';
 
-type PropsModal = ModalProps & {
-  setVisible: (visible: boolean) => void;
-  setNewPasswordVissible: (visible: boolean) => void;
-}
 
-export function RequestCode({ visible, setVisible, setNewPasswordVissible }: PropsModal) {
+export function RequestCode({ visible, setRequestCode, setNewPasswordVisible }: PropsModal) {
   const [code, setCode] = useState('');
   const { verifyCode, email } = useAuth();
 
   async function handleVerifyToken() {
     if (code.length === 5) {
       const message = await verifyCode(email, code);
-      setNewPasswordVissible(message)
+      setNewPasswordVisible(message);
     }
     setCode('');
   }
@@ -32,19 +29,19 @@ export function RequestCode({ visible, setVisible, setNewPasswordVissible }: Pro
 
   return (
     <Modal
+      backdropOpacity={0}
       animationIn={'fadeIn'}
       isVisible={visible}
       onBackdropPress={() => {
-        setVisible(false)
+        setRequestCode(false)
+      }}
+      onBackButtonPress={() => {
+        setRequestCode(false);
       }}
       onModalHide={async () => {
         await AsyncStorage.removeItem('@resetPasswordToken');
       }}
       coverScreen={true}
-      backdropOpacity={0.6}
-      onBackButtonPress={() => {
-        setVisible(false);
-      }}
       style={{ justifyContent: 'flex-end', margin: 0 }}
     >
       <Container style={{ borderTopLeftRadius: 30, borderTopRightRadius: 30 }}>

@@ -59,10 +59,14 @@ export async function validateCode(email: string, code: string): Promise<string 
   });
 }
 
-export async function newPassword(password: string, confirmpassword: string): Promise<string | undefined> {
+export async function newPassword(password: string, confirmpassword: string, token: string): Promise<string | undefined> {
   return await api.patch('/user/sendnewpassword', {
     password,
     confirmpassword
+  }, {
+    headers: {
+      authorization: `Bearer ${token}`
+    }
   }).then((res: AxiosResponse<ResponseObject>) => {
     if (res) {
       Alert.alert(res.data.message);

@@ -14,10 +14,10 @@ export function AuthInput({ text, icon, maxLenght = 40, securityTextEntry = fals
   function handlePassword() {
     if (isPassword) {
       setIsPassword(false);
-      setPasswordIcon('password');
+      setPasswordIcon('eye-outline');
     } else {
       setIsPassword(true);
-      setPasswordIcon('eye-outline');
+      setPasswordIcon('eye-off-outline');
     }
 
   }

@@ -43,6 +43,8 @@ function AuthProvider({ children }: AuthProviderProps) {
     const storageToken = await AsyncStorage.getItem('@token');
     if (storageToken) {
       await authUser(JSON.stringify(token));
+    } else {
+      setToken('')
     }
     // await AsyncStorage.removeItem('@token');
   }
@@ -68,7 +70,8 @@ function AuthProvider({ children }: AuthProviderProps) {
   }
 
   async function sendNewPassword(password: string, confirmpassword: string) {
-    const message = await newPassword(password, confirmpassword);
+    const passwordToken = await AsyncStorage.getItem('@resetPasswordToken');
+    const message = await newPassword(password, confirmpassword, passwordToken!);
     await AsyncStorage.removeItem('@resetPasswordToken');
     setUserEmail('');
     return message;
@@ -82,10 +85,6 @@ function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     checkToken().then(() => { }).catch(() => { });
-
-    if (token) {
-      api.defaults.headers.common['authorization'] = token;
-    }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userEmail])

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-native-modal';
 import { Text, ModalProps, View } from 'react-native';
 import { Container, Paragraph, Title } from './styles';
@@ -6,22 +6,18 @@ import { Input } from '../../../../components/Input';
 import { SubmitButton } from '../../../../components/SubmitButton';
 import { useAuth } from '../../../../hooks/useAuth';
 import { InputContainer } from './styles';
-
-type Props = ModalProps & {
-  setVisible: (visible: boolean) => void;
-  setRequestCode: (visible: boolean) => void;
-  setSendEmail: (visible: boolean) => void;
-}
-
-export function NewPassword({ visible, setVisible, setRequestCode, setSendEmail }: Props) {
+import { PropsModal } from '../../../../domain/propsInterfaces';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+export function NewPassword({ visible, setNewPasswordVisible, setRequestCode, setSendEmail }: PropsModal) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const { sendNewPassword } = useAuth();
 
+
   async function handleSubmit() {
     const message = await sendNewPassword(password, confirmPassword);
     if (message) {
-      setVisible(false);
+      setNewPasswordVisible(false);
       setRequestCode(false);
       setSendEmail(false);
     }
@@ -29,17 +25,19 @@ export function NewPassword({ visible, setVisible, setRequestCode, setSendEmail 
 
   return (
     <Modal
-      onModalHide={() => {
+      backdropOpacity={0}
+      onModalHide={async () => {
         setPassword('');
         setConfirmPassword('');
+        await AsyncStorage.removeItem('@resetPasswordToken');
       }}
       animationIn={'fadeIn'}
       isVisible={visible}
       onBackdropPress={() => {
-        setVisible(false);
+        setNewPasswordVisible(false);
       }}
       onBackButtonPress={() => {
-        setVisible(false);
+        setNewPasswordVisible(false);
       }}
       style={{ justifyContent: 'flex-end', margin: 0 }}
     >

@@ -76,20 +76,22 @@ export function Login({
         handleNavigate();
       }} />
       <SendEmail
-        setRequestCodeVisible={setShownRequestCodeVisible}
         visible={shownSendEmail}
-        setVisible={setShownSendEmail}
+        setSendEmail={setShownSendEmail}
+        setRequestCode={setShownRequestCodeVisible}
+        setNewPasswordVisible={setShownNewPassword}
       />
       <RequestCode
-        setVisible={setShownRequestCodeVisible}
         visible={shownRequestCode}
-        setNewPasswordVissible={setShownNewPassword}
+        setSendEmail={setShownSendEmail}
+        setRequestCode={setShownRequestCodeVisible}
+        setNewPasswordVisible={setShownNewPassword}
       />
       <NewPassword
         visible={shownNewPassword}
-        setVisible={setShownNewPassword}
-        setRequestCode={setShownRequestCodeVisible}
         setSendEmail={setShownSendEmail}
+        setRequestCode={setShownRequestCodeVisible}
+        setNewPasswordVisible={setShownNewPassword}
       />
     </Container>
   );

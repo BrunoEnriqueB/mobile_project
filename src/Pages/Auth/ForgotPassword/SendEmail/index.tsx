@@ -11,14 +11,10 @@ import { EmailInvalid } from '../../../../components/EmailInvalid';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { AuthParams } from '../../../../domain/authTypes';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { PropsModal } from '../../../../domain/propsInterfaces';
 
 
-type PropsModal = ModalProps & {
-  setVisible: (visible: boolean) => void;
-  setRequestCodeVisible: (visible: boolean) => void;
-}
-
-export function SendEmail({ visible, setVisible, setRequestCodeVisible }: PropsModal) {
+export function SendEmail({ visible, setSendEmail, setRequestCode }: PropsModal) {
   const { sendEmail } = useAuth();
   const [emailError, setEmailError] = useState(false);
   const [email, setEmail] = useState('');
@@ -36,7 +32,7 @@ export function SendEmail({ visible, setVisible, setRequestCodeVisible }: PropsM
     setDisabledSubmit(true);
     const message = await sendEmail(email);
     if (message) {
-      setRequestCodeVisible(true);
+      setRequestCode(true);
     }
     setDisabledSubmit(false);
   }
@@ -51,16 +47,16 @@ export function SendEmail({ visible, setVisible, setRequestCodeVisible }: PropsM
       animationIn={'fadeIn'}
       isVisible={visible}
       onBackdropPress={() => {
-        setVisible(false);
+        setSendEmail(false);
+      }}
+      onBackButtonPress={() => {
+        setSendEmail(false);
       }}
       onModalHide={() => {
         setEmail('');
       }}
       coverScreen={true}
       backdropOpacity={0.6}
-      onBackButtonPress={() => {
-        setVisible(false);
-      }}
       style={{ justifyContent: 'flex-end', margin: 0 }}
     >
       <Container style={{ borderTopLeftRadius: 30, borderTopRightRadius: 30 }}>
